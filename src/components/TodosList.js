@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-function TodosList({ todos, handleChange, deleteTodo }) {
+function TodosList({ todos, handleChange, deleteTodo, updateTodo }) {
   return (
     <ul>
       {todos.map((todo) => (
@@ -10,6 +10,7 @@ function TodosList({ todos, handleChange, deleteTodo }) {
           todo={todo}
           handleChange={handleChange}
           deleteTodo={deleteTodo}
+          updateTodo={updateTodo}
         />
       ))}
     </ul>

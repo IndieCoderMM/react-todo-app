@@ -27,6 +27,17 @@ function TodoContainer() {
     setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
+  const updateTodo = (title, id) => {
+    setTodos((prevTodos) => {
+      return prevTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, title };
+        }
+        return todo;
+      });
+    });
+  };
+
   const deleteTodo = (id) => {
     setTodos((prevTodos) => [...prevTodos.filter((todo) => todo.id !== id)]);
   };
@@ -40,6 +51,7 @@ function TodoContainer() {
           todos={todos}
           handleChange={handleChange}
           deleteTodo={deleteTodo}
+          updateTodo={updateTodo}
         />
       </div>
     </div>
