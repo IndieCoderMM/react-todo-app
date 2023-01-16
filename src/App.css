@@ -62,3 +62,14 @@ body {
   outline: none;
   border: none;
 }
+
+.add-btn svg {
+  color: darkcyan;
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.active {
+  color: orangered;
+  text-decoration: underline;
+}

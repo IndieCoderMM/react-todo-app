@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './TodoItem.module.css';
+import { BsFillTrashFill } from 'react-icons/bs';
 
-function TodoItem({ todo, handleChange, deleteTodo, updateTodo }) {
+const TodoItem = ({ todo, handleChange, deleteTodo, updateTodo }) => {
   const [editing, setEditing] = useState(false);
+
+  useEffect(() => {
+    return () => console.log('cleaning up');
+  }, []);
 
   const completedStyle = {
     fontStyle: 'italic',
@@ -25,26 +30,26 @@ function TodoItem({ todo, handleChange, deleteTodo, updateTodo }) {
   let editMode = {};
   if (editing) viewMode.display = 'none';
   else editMode.display = 'none';
-
+  const { id, completed, title } = todo;
   return (
     <li className={styles.item}>
       <div onDoubleClick={handleEditing} style={viewMode}>
         <input
           className={styles.checkbox}
           type='checkbox'
-          checked={todo.completed}
+          checked={completed}
           onChange={() => {
-            handleChange(todo.id);
+            handleChange(id);
           }}
         />
-        <span style={todo.completed ? completedStyle : null}>{todo.title}</span>
+        <span style={completed ? completedStyle : null}>{title}</span>
         <button
           type='button'
           onClick={() => {
-            deleteTodo(todo.id);
+            deleteTodo(id);
           }}
         >
-          Delete
+          <BsFillTrashFill style={{ color: 'orangered', fontSize: '16px' }} />
         </button>
       </div>
       <input
@@ -53,12 +58,12 @@ function TodoItem({ todo, handleChange, deleteTodo, updateTodo }) {
         style={editMode}
         value={todo.title}
         onChange={(e) => {
-          updateTodo(e.target.value, todo.id);
+          updateTodo(e.target.value, id);
         }}
         onKeyDown={handleUpdateDone}
       />
     </li>
   );
-}
+};
 
 export default TodoItem;

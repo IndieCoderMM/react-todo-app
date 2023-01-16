@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TodoList from './TodosList';
 import Header from './Header';
 import InputTodo from './InputTodo';
 
-function TodoContainer() {
-  const [todos, setTodos] = useState([]);
+const TodoContainer = () => {
+  const [todos, setTodos] = useState(getStoredTodos());
+
+  function getStoredTodos() {
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
+  }
+
+  // Updating storage
+  useEffect(() => {
+    const temp = JSON.stringify(todos);
+    localStorage.setItem('todos', temp);
+  }, [todos]);
 
   const handleChange = (id) => {
-    setTodos((prevTodos) => {
-      return prevTodos.map((todo) => {
+    setTodos(
+      todos.map((todo) => {
         if (todo.id === id) {
           return { ...todo, completed: !todo.completed };
         }
         return todo;
-      });
-    });
+      })
+    );
   };
 
   const addTodo = (title) => {
@@ -24,22 +36,22 @@ function TodoContainer() {
       title,
       completed: false,
     };
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+    setTodos([...todos, newTodo]);
   };
 
   const updateTodo = (title, id) => {
-    setTodos((prevTodos) => {
-      return prevTodos.map((todo) => {
+    setTodos(
+      todos.map((todo) => {
         if (todo.id === id) {
           return { ...todo, title };
         }
         return todo;
-      });
-    });
+      })
+    );
   };
 
   const deleteTodo = (id) => {
-    setTodos((prevTodos) => [...prevTodos.filter((todo) => todo.id !== id)]);
+    setTodos([...todos.filter((todo) => todo.id !== id)]);
   };
 
   return (
@@ -56,6 +68,6 @@ function TodoContainer() {
       </div>
     </div>
   );
-}
+};
 
 export default TodoContainer;
