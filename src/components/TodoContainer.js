@@ -32,14 +32,16 @@ function TodoContainer() {
   };
 
   return (
-    <div>
-      <Header />
-      <InputTodo addTodo={addTodo} />
-      <TodoList
-        todos={todos}
-        handleChange={handleChange}
-        deleteTodo={deleteTodo}
-      />
+    <div className='container'>
+      <div className='inner'>
+        <Header />
+        <InputTodo addTodo={addTodo} />
+        <TodoList
+          todos={todos}
+          handleChange={handleChange}
+          deleteTodo={deleteTodo}
+        />
+      </div>
     </div>
   );
 }

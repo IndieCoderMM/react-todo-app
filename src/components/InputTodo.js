@@ -16,14 +16,15 @@ function InputTodo({ addTodo }) {
     setTitle('');
   };
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className='form-container'>
       <input
+        className='task-input'
         type='text'
         placeholder='Add new todo'
         onChange={onChange}
         value={title}
       />
-      <button>Add</button>
+      <button className='add-btn'>Add</button>
     </form>
   );
 }
