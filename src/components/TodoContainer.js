@@ -5,13 +5,12 @@ import Header from './Header';
 import InputTodo from './InputTodo';
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState(getStoredTodos());
-
   function getStoredTodos() {
     const temp = localStorage.getItem('todos');
     const savedTodos = JSON.parse(temp);
     return savedTodos || [];
   }
+  const [todos, setTodos] = useState(getStoredTodos());
 
   // Updating storage
   useEffect(() => {
@@ -26,7 +25,7 @@ const TodoContainer = () => {
           return { ...todo, completed: !todo.completed };
         }
         return todo;
-      })
+      }),
     );
   };
 
@@ -46,7 +45,7 @@ const TodoContainer = () => {
           return { ...todo, title };
         }
         return todo;
-      })
+      }),
     );
   };
 
@@ -55,8 +54,8 @@ const TodoContainer = () => {
   };
 
   return (
-    <div className='container'>
-      <div className='inner'>
+    <div className="container">
+      <div className="inner">
         <Header />
         <InputTodo addTodo={addTodo} />
         <TodoList

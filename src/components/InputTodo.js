@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 
 function InputTodo({ addTodo }) {
   const [title, setTitle] = useState('');
@@ -10,26 +11,29 @@ function InputTodo({ addTodo }) {
   const onSubmit = (e) => {
     e.preventDefault();
     if (title.trim().length === 0) {
-      alert('Please enter a title');
       return;
     }
     addTodo(title.trim());
     setTitle('');
   };
   return (
-    <form onSubmit={onSubmit} className='form-container'>
+    <form onSubmit={onSubmit} className="form-container">
       <input
-        className='task-input'
-        type='text'
-        placeholder='Add new todo'
+        className="task-input"
+        type="text"
+        placeholder="Add new todo"
         onChange={onChange}
         value={title}
       />
-      <button className='add-btn'>
+      <button className="add-btn" type="button">
         <AiFillPlusCircle />
       </button>
     </form>
   );
 }
+
+InputTodo.propTypes = {
+  addTodo: PropTypes.func.isRequired,
+};
 
 export default InputTodo;

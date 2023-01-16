@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import styles from './TodoItem.module.css';
+import React, { useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
+import PropTypes from 'prop-types';
+import styles from './TodoItem.module.css';
 
-const TodoItem = ({ todo, handleChange, deleteTodo, updateTodo }) => {
+const TodoItem = ({
+  todo, handleChange, deleteTodo, updateTodo,
+}) => {
   const [editing, setEditing] = useState(false);
-
-  useEffect(() => {
-    return () => console.log('cleaning up');
-  }, []);
 
   const completedStyle = {
     fontStyle: 'italic',
@@ -26,8 +25,8 @@ const TodoItem = ({ todo, handleChange, deleteTodo, updateTodo }) => {
     }
   };
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
   if (editing) viewMode.display = 'none';
   else editMode.display = 'none';
   const { id, completed, title } = todo;
@@ -36,7 +35,7 @@ const TodoItem = ({ todo, handleChange, deleteTodo, updateTodo }) => {
       <div onDoubleClick={handleEditing} style={viewMode}>
         <input
           className={styles.checkbox}
-          type='checkbox'
+          type="checkbox"
           checked={completed}
           onChange={() => {
             handleChange(id);
@@ -44,7 +43,7 @@ const TodoItem = ({ todo, handleChange, deleteTodo, updateTodo }) => {
         />
         <span style={completed ? completedStyle : null}>{title}</span>
         <button
-          type='button'
+          type="button"
           onClick={() => {
             deleteTodo(id);
           }}
@@ -54,7 +53,7 @@ const TodoItem = ({ todo, handleChange, deleteTodo, updateTodo }) => {
       </div>
       <input
         className={styles.textInput}
-        type='text'
+        type="text"
         style={editMode}
         value={todo.title}
         onChange={(e) => {
@@ -64,6 +63,14 @@ const TodoItem = ({ todo, handleChange, deleteTodo, updateTodo }) => {
       />
     </li>
   );
+};
+
+TodoItem.propTypes = {
+  // eslint-disable-next-line
+  todo: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  updateTodo: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

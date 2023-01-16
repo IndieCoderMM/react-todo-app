@@ -20,8 +20,8 @@ const Navbar = () => {
   const toggleNav = () => setNavOpen((prev) => !prev);
   const closeNav = () => setNavOpen(false);
   return (
-    <nav className='navBar'>
-      <button onClick={toggleNav}>
+    <nav className="navBar">
+      <button onClick={toggleNav} type="button">
         {navOpen ? (
           <MdClose style={{ color: '#fff', width: '40px', height: '40px' }} />
         ) : (
@@ -29,15 +29,13 @@ const Navbar = () => {
         )}
       </button>
       <ul className={`menuNav ${navOpen ? ' showMenu' : ''}`}>
-        {links.map((link) => {
-          return (
-            <li key={link.id}>
-              <NavLink to={link.path} onClick={() => closeNav()}>
-                {link.text}
-              </NavLink>
-            </li>
-          );
-        })}
+        {links.map((link) => (
+          <li key={link.id}>
+            <NavLink to={link.path} onClick={() => closeNav()}>
+              {link.text}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
