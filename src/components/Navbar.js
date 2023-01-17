@@ -23,9 +23,9 @@ const Navbar = () => {
     <nav className="navBar">
       <button onClick={toggleNav} type="button">
         {navOpen ? (
-          <MdClose style={{ color: '#fff', width: '40px', height: '40px' }} />
+          <MdClose className="close-icon" />
         ) : (
-          <FiMenu style={{ color: '#7b7b7b', width: '40px', height: '40px' }} />
+          <FiMenu className="menu-icon" />
         )}
       </button>
       <ul className={`menuNav ${navOpen ? ' showMenu' : ''}`}>

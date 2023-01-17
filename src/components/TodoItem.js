@@ -48,7 +48,7 @@ const TodoItem = ({
             deleteTodo(id);
           }}
         >
-          <BsFillTrashFill style={{ color: 'orangered', fontSize: '16px' }} />
+          <BsFillTrashFill className={styles.icon} />
         </button>
       </div>
       <input

@@ -11,6 +11,20 @@ body {
   min-height: 100vh;
 }
 
+.header {
+  padding: 20px 0;
+  line-height: 1.5em;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1em;
+  color: skyblue;
+  text-align: center;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -162,4 +176,16 @@ a {
 
 .single-page p {
   line-height: 25px;
+}
+
+.close-icon {
+  color: #fff;
+  width: 40px;
+  height: 40px;
+}
+
+.menu-icon {
+  color: #7b7b7b;
+  width: 40px;
+  height: 40px;
 }
